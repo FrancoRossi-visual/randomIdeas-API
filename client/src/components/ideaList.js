@@ -1,5 +1,5 @@
-import ideasApi from '../services/ideasApi';
-import IdeasApi from '../services/ideasApi';
+// import ideasApi from '../services/IdeasApi';
+import IdeasApi from '../services/IdeasApi';
 
 class IdeaList {
   constructor() {
@@ -22,18 +22,28 @@ class IdeaList {
       if (e.target.classList.contains('fa-times')) {
         e.stopImmediatePropagation();
         const ideaId = e.target.parentElement.parentElement.dataset.id;
-        console.log(ideaId);
+        this.deleteIdea(ideaId);
       }
     });
   }
 
   async getIdeas() {
     try {
-      const response = await ideasApi.getIdeas();
+      const response = await IdeasApi.getIdeas();
       this._ideas = response.data.data;
       this.render();
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async deleteIdea(ideaId) {
+    try {
+      const res = await IdeasApi.deleteIdea(ideaId);
+      this._ideas.filter((idea) => idea._id !== ideaId);
+      this.getIdeas();
+    } catch (error) {
+      alert("You can't delete this idea");
     }
   }
 

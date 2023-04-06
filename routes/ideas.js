@@ -37,7 +37,7 @@ router.delete('/:id', async (request, response) => {
     // match the user name;
     if (idea.username === request.body.username) {
       await Idea.findByIdAndDelete(request.params.id);
-      response.json({ success: true, data: {} });
+      return response.json({ success: true, data: {} });
     }
     // username doesn't match
     response.status(403).json({
