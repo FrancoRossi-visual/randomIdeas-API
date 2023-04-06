@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "build": "npm i && cd client && npm i && npm run build"
-  },
+    },
   "author": "Franco Rossi",
   "license": "MIT",
   "dependencies": {
